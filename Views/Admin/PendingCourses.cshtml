@@ -1,0 +1,45 @@
+﻿@model List<MyCoursera.Models.Course>
+@{
+    ViewData["Title"] = "Pending Courses";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">⏳ Pending Courses</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-success text-center">
+            <i class="bi bi-check-circle"></i> No courses are pending approval 🎉
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var course in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-lg border-0 rounded-3">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@course.Title</h5>
+                            <p class="text-muted">Author: @course.Author</p>
+                            <p>@course.Description</p>
+
+                            <div class="mt-auto d-flex justify-content-between">
+                                <form asp-controller="Admin" asp-action="ApproveCourse" method="post" asp-route-id="@course.Id">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="bi bi-check"></i> Approve
+                                    </button>
+                                </form>
+                                <form asp-controller="Admin" asp-action="RejectCourse" method="post" asp-route-id="@course.Id">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-x"></i> Reject
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,72 @@
+﻿@model MyCoursera.Models.StudentDashboardViewModel
+@{
+    ViewData["Title"] = "Student Dashboard";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">🎓 Welcome to Your Learning Dashboard</h1>
+
+    <div class="row g-4">
+        <!-- Enrolled Courses -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded-3">
+                <div class="card-body text-center">
+                    <i class="bi bi-journal-bookmark fs-1 text-primary"></i>
+                    <h5 class="card-title mt-3">My Courses</h5>
+                    <p class="card-text">You are enrolled in <strong>@Model.EnrolledCoursesCount</strong> courses.</p>
+                    <a asp-controller="Student" asp-action="MyCourses" class="btn btn-primary btn-sm">View Courses</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded-3">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Learning Progress</h5>
+                    <p class="small text-muted text-center">Overall completion rate</p>
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                             role="progressbar"
+                             style="width: @Model.ProgressPercent%">
+                            @Model.ProgressPercent%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded-3">
+                <div class="card-body text-center">
+                    <i class="bi bi-award fs-1 text-warning"></i>
+                    <h5 class="card-title mt-3">Achievements</h5>
+                    <p class="card-text">You’ve earned <strong>@Model.CertificatesCount</strong> Certificates so far.</p>
+                    @* <a asp-controller="Student" asp-action="Achievements" class="btn btn-outline-warning btn-sm">View Achievements</a> *@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommended Courses -->
+    <div class="mt-5">
+        <h3 class="mb-3">📚 Recommended For You</h3>
+        <div class="row g-4">
+            @foreach (var course in Model.RecommendedCourses)
+            {
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        @* <img src="https://picsum.photos/400/200?random=@course.Id" class="card-img-top" alt="@course.Title"> *@
+                        <div class="card-body">
+                            <h5 class="card-title">@course.Title</h5>
+                            <p class="card-text">@course.Description</p>
+                            <p class="card-text"><b>By @course.Author</b></p>
+                            <a asp-controller="Student" asp-action="Explore" asp-route-id="@course.Id" class="btn btn-sm btn-success">View Now</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model MyCoursera.Models.Course
+
+@{
+    ViewData["Title"] = "Add New Course";
+}
+
+<h2 class="mb-4">Add New Course</h2>
+
+<form asp-action="CreateCourse" method="post" class="border p-4 rounded shadow-sm">
+    <div class="form-group mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    @* <div class="form-group mb-3">
+        <label asp-for="Author" class="form-label"></label>
+        <input asp-for="Author" class="form-control" />
+        <span asp-validation-for="Author" class="text-danger"></span>
+    </div> *@
+
+   @*  <div class="form-group mb-3">
+        <label asp-for="IsApproved" class="form-label">Approval State</label>
+        <select asp-for="IsApproved" class="form-select" asp-items="Html.GetEnumSelectList<MyCoursera.Models.CourseState>()"></select>
+        <span asp-validation-for="IsApproved" class="text-danger"></span>
+    </div> *@
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

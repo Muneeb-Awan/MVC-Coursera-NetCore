@@ -1,0 +1,29 @@
+﻿@model (Course Course, ICollection<AppUser> Students)
+
+<h2>Students Enrolled in: @Model.Course.Title</h2>
+<p><b>Instructor:</b> @Model.Course.Author</p>
+
+@if (!Model.Students.Any())
+{
+    <p>No students enrolled yet.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Student Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.Students)
+            {
+                <tr>
+                    <td>@student.FullName</td>
+                    <td>@student.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

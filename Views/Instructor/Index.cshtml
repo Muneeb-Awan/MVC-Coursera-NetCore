@@ -1,0 +1,69 @@
+﻿@model MyCoursera.Models.InstructorDashboardViewModel
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center fw-bold">Welcome, Instructor!</h1>
+    <h2 class="mb-4 text-center fw-bold">📊 Instructor Dashboard</h2>
+
+    <div class="row g-4">
+        <!-- Total Courses -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-journal-text display-4 text-primary"></i>
+                    <h5 class="card-title mt-3">Courses Created</h5>
+                    <h2 class="fw-bold">@Model.TotalCourses</h2>
+                    <p class="text-muted">Your total published and pending courses</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Students -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-people-fill display-4 text-success"></i>
+                    <h5 class="card-title mt-3">Students Enrolled</h5>
+                    <h2 class="fw-bold">@Model.TotalStudents</h2>
+                    <p class="text-muted">Across all your courses</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rank -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-award-fill display-4 text-warning"></i>
+                    <h5 class="card-title mt-3">Instructor Rank</h5>
+                    <h3 class="fw-bold">@Model.Rank</h3>
+
+                    <!-- Progress bar -->
+                    <div class="progress mt-3" style="height: 15px;">
+                        <div class="progress-bar bg-warning" role="progressbar"
+                             style="width: @Model.ProgressPercent%"
+                             aria-valuenow="@Model.ProgressPercent" aria-valuemin="0" aria-valuemax="100">
+                            @Model.ProgressPercent%
+                        </div>
+                    </div>
+                    <p class="text-muted mt-2">Progress to next rank</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra Insights -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="card shadow border-0">
+                <div class="card-body">
+                    <h5 class="card-title">📈 Insights</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">🚀 Keep creating courses to attract more students!</li>
+                        <li class="list-group-item">🎯 Next milestone unlocks when you reach more enrollments.</li>
+                        <li class="list-group-item">🏆 Higher ranks increase your visibility in the platform.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

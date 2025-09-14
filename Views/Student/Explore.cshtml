@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MyCoursera.Models.Course>
+
+@{
+    ViewData["Title"] = "Explore Courses";
+}
+
+<h2 class="mb-4">Explore Courses</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        There Are No Courses To Show At the moment!
+    </div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var course in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm border-2 rounded-3">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-primary">@course.Title</h5>
+                        <p class="card-text text-muted">
+                            @course.Description
+                        </p>
+                        <p class="mb-1"><strong>Author:</strong> @course.Author</p>
+                        @* <p class="mb-3"><strong>Status:</strong> @course.status</p> *@
+
+                        <div class="mt-auto">
+                            <form asp-action="Enroll" asp-route-id="@course.Id" method="post">
+                                <button type="submit" class="btn btn-sm btn-success w-100">Enroll</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
